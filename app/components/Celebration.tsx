@@ -131,13 +131,47 @@ export default function Celebration() {
         transition={{ delay: 0.3, duration: 0.8, type: "spring", stiffness: 80 }}
         className="relative z-10 text-center px-6"
       >
-        <div className="text-6xl mb-6">🎉💕🥂</div>
-        <h2 className="text-5xl font-bold text-valentine-cream drop-shadow-lg mb-4">
+        <div className="text-6xl mb-6 flex justify-center gap-3">
+          {["🎉", "💕", "🥂"].map((emoji, i) => (
+            <motion.span
+              key={i}
+              animate={{
+                y: [0, -15, 0],
+                rotate: [0, i === 1 ? 0 : (i === 0 ? -15 : 15), 0],
+                scale: [1, 1.2, 1],
+              }}
+              transition={{
+                duration: 1.5,
+                delay: i * 0.2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="inline-block"
+            >
+              {emoji}
+            </motion.span>
+          ))}
+        </div>
+        <motion.h2
+          className="text-5xl font-bold text-valentine-cream drop-shadow-lg mb-4"
+          animate={{
+            textShadow: [
+              "0 0 20px rgba(255,107,157,0.5)",
+              "0 0 40px rgba(255,107,157,0.8)",
+              "0 0 20px rgba(255,107,157,0.5)",
+            ],
+          }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
           Be ready
-        </h2>
-        <p className="text-3xl text-valentine-rose font-semibold drop-shadow-lg">
+        </motion.h2>
+        <motion.p
+          className="text-3xl text-valentine-rose font-semibold drop-shadow-lg"
+          animate={{ scale: [1, 1.05, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
           6:30PM Feb 14 2026
-        </p>
+        </motion.p>
       </motion.div>
 
       {/* Together photo — slides in after the text */}
@@ -147,18 +181,81 @@ export default function Celebration() {
         transition={{ delay: 1, duration: 0.8, type: "spring", stiffness: 80 }}
         className="relative z-10 mt-4"
       >
-        <Image
-          src="/together.jpeg"
-          alt="Us together"
-          width={2048}
-          height={1536}
-          className="rounded-2xl max-w-[280px] h-auto"
-          style={{
-            border: "2px solid rgba(255, 107, 157, 0.6)",
-            boxShadow: "0 0 20px rgba(255, 107, 157, 0.3)",
+        <motion.div
+          className="absolute -top-4 -left-4 text-3xl z-20"
+          animate={{ scale: [1, 1.3, 1], rotate: [-15, 0, -15] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          🌸
+        </motion.div>
+        <motion.div
+          className="absolute -top-4 -right-4 text-3xl z-20"
+          animate={{ scale: [1, 1.3, 1], rotate: [15, 0, 15] }}
+          transition={{ duration: 2, delay: 0.5, repeat: Infinity }}
+        >
+          🌺
+        </motion.div>
+        <motion.div
+          className="absolute -bottom-4 -left-4 text-3xl z-20"
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 1.5, delay: 0.3, repeat: Infinity }}
+        >
+          💗
+        </motion.div>
+        <motion.div
+          className="absolute -bottom-4 -right-4 text-3xl z-20"
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 1.5, delay: 0.7, repeat: Infinity }}
+        >
+          💕
+        </motion.div>
+        <motion.div
+          animate={{
+            boxShadow: [
+              "0 0 20px rgba(255, 107, 157, 0.3)",
+              "0 0 40px rgba(255, 107, 157, 0.6)",
+              "0 0 20px rgba(255, 107, 157, 0.3)",
+            ],
           }}
-          priority
-        />
+          transition={{ duration: 2, repeat: Infinity }}
+          className="rounded-2xl overflow-hidden"
+          style={{ border: "2px solid rgba(255, 107, 157, 0.6)" }}
+        >
+          <Image
+            src="/together.jpeg"
+            alt="Us together"
+            width={2048}
+            height={1536}
+            className="rounded-2xl max-w-[280px] h-auto"
+            priority
+          />
+        </motion.div>
+      </motion.div>
+
+      {/* Bottom decorative row */}
+      <motion.div
+        className="relative z-10 flex justify-center gap-3 mt-6"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+      >
+        {["🌹", "💖", "✨", "💝", "✨", "💖", "🌹"].map((emoji, i) => (
+          <motion.span
+            key={i}
+            animate={{
+              y: [0, -8, 0],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 1.2,
+              delay: i * 0.15,
+              repeat: Infinity,
+            }}
+            className="text-2xl"
+          >
+            {emoji}
+          </motion.span>
+        ))}
       </motion.div>
     </motion.div>
   );
