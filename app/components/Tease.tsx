@@ -63,11 +63,20 @@ export default function Tease({ name, onYes }: Props) {
           Hi {name}!
         </h2>
 
-        <p className="text-valentine-cream text-lg mb-10 opacity-80 leading-relaxed">
+        <p className="text-valentine-cream text-lg mb-4 opacity-80 leading-relaxed">
           I have a question....
           <br />
           Do you wanna know what it is?
         </p>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          className="text-valentine-rose text-sm mb-6 italic"
+        >
+          (Try clicking No 😏)
+        </motion.p>
 
         <div
           ref={containerRef}
